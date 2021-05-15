@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager List</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <table>
+            <thead>
+                <tr class="title">
+                    <th style="width: 5%">Id</th>
+                    <th style="width: 15%">Person</th>
+                    <th style="width: 10%">Salary</th>
+                    <th style="width: 20%">Number Of Works</th>
+                    <th style="width: 15%">CreatedAt</th>
+                    <th style="width: 15%">ModifiedAt</th>
+                    <th style="width: 20%" colspan="2">OPTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="manager: ${managerList}">
+                <td th:text="${manager.id}">ID</td>
+                <td>
+                    <button class="btnDrop buttonInfo" th:text="${manager.person.name}" th:data-id="${manager.id}"
+                            th:data-status="off" onclick="kl(this)">ID</button>
+                        <div class="dropItem" th:data-id-drop="${manager.id}">
+                        <table>
+                            <tr>
+                                <td>Name</td>
+                                <td th:text="${manager.person.name}">Name</td>
+                            </tr>
+                            <tr>
+                                <td>Surname</td>
+                                <td th:text="${manager.person.surname}">Surname</td>
+                            </tr>
+                            <tr>
+                                <td>Age</td>
+                                <td th:text="${manager.person.age}">Age</td>
+                            </tr>
+                            <tr>
+                                <td>CreatedAt</td>
+                                <td th:text="${manager.person.created_at}">created_at</td>
+                            </tr>
+                            <tr>
+                                <td>ModifiedAt</td>
+                                <td th:text="${manager.person.modified_at}">modified_at</td>
+                            </tr>
+                        </table>
+
+                        <br>
+
+                        <a class="btnDropItem" th:href="@{/ui/person/get/all}">
+                            <button class="btn btn-3">Open</button>
+                        </a>
+                    </div>
+                </td>
+                <td th:text="${manager.salary}">Salary</td>
+                <td th:text="${manager.numberOfWorks}">numberOfWorks</td>
+                <td th:text="${manager.created_at}">created_at</td>
+                <td th:text="${manager.modified_at}">modified_at</td>
+                <td>
+                    <a th:href="@{/ui/manager/delete/{id}(id=${manager.id})}">
+                        <button class="buttonDelete">Delete</button>
+                    </a>
+                    <a th:href="@{/ui/manager/showUpdateForm/{id}(id=${manager.id})}">
+                        <button class="buttonEdit">Edit</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <a th:href = "@{/ui/manager/showNewForm}">
+            <button class="btn btn-5">Add</button>
+        </a>
+    </div>
+    <script th:inline="javascript">
+        let listElem = document.querySelectorAll(".dropItem");
+        function kl(obj) {
+            listElem.forEach(elem => { elem.style.display = "none";});
+
+            if(obj.getAttribute("data-status") === "on") {
+                document.querySelectorAll(".btnDrop").
+                forEach(elem => { elem.setAttribute("data-status", "off"); })
+                return;
+            }
+
+            listElem.forEach(elem => {
+                if(elem.getAttribute("data-id-drop") === obj.getAttribute("data-id")) {
+                    elem.style.display = "grid";
+                    elem.style.position = "absolute";
+                    elem.style.gridTemplateColumns = "auto auto";
+                    obj.setAttribute("data-status", "on");
+                }else{
+                    document.querySelectorAll(".btnDrop").
+                    forEach(elem => { if(elem != obj) elem.setAttribute("data-status", "off"); })
+                }
+            })
+        }
+    </script>
+</body>
+</html>

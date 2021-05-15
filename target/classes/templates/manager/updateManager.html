@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Manager</title>
+    <link  th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="element">
+        <form id="dataMain" action="#" th:action="@{/ui/manager/update}" th:object="${manager}"
+              method="POST">
+
+            <table>
+                <tr>
+                    <td><label for="num0">Id</label></td>
+                    <td><input id="num0" type="number" readonly th:field="*{id}"/></td>
+                </tr>
+                <tr>
+                    <td><label for="num1">Person</label></td>
+                    <td>
+                        <div id="num1" style="text-align: left">
+                            <select th:field="*{person.id}">
+                                <option th:each="personIdList: ${personIdList}"
+                                        th:value="${personIdList.id}" th:text="${personIdList.name}">ID
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="num2">Salary</label></td>
+                    <td><input id="num2" type="number" th:field="*{salary}"  required></td>
+                </tr>
+                <tr>
+                    <td><label for="num3">Number Of Works</label></td>
+                    <td><input id="num3" type="number" th:field="*{numberOfWorks}"  required></td>
+                </tr>
+            </table>
+
+            <br><br>
+
+            <button form="dataMain" type="submit" class="btn btn-3">DONE</button>
+        </form>
+        <br>
+        <a th:href="@{/ui/manager/get/all}">
+            <button class="btn btn-5">Back</button>
+        </a>
+    </div>
+
+</body>
+</html>

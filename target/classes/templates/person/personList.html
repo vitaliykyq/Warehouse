@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person List</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link  href="../../static/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+
+    <table>
+        <thead>
+
+        <tr class="title">
+            <th style="width: 10%">Id</th>
+            <th style="width: 15%">Name</th>
+            <th style="width: 15%">Surname</th>
+            <th style="width: 10%">Age</th>
+            <th style="width: 15%">CreatedAt</th>
+            <th style="width: 15%">ModifiedAt</th>
+            <th style="width: 20%" colspan="2">OPTIONS</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+        <tr th:each="person: ${personList}">
+            <td th:text="${person.id}">ID</td>
+            <td th:text="${person.name}">Name</td>
+            <td th:text="${person.surname}">Surname</td>
+            <td th:text="${person.age}">Age</td>
+            <td th:text="${person.created_at}">created_at</td>
+            <td th:text="${person.modified_at}">modified_at</td>
+            <td>
+                <a th:href="@{/ui/person/delete/{id}(id=${person.id})}">
+                    <button class="buttonDelete">Delete</button>
+                </a>
+                <a th:href="@{/ui/person/showUpdateForm/{id}(id=${person.id})}">
+                    <button class="buttonEdit">Edit</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <a th:href = "@{/ui/person/showNewForm}">
+        <button class="btn btn-5">Add</button>
+    </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Person</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="element">
+    <form action="#" th:action="@{/ui/person/add}" th:object="${person}"
+          method="POST">
+        <div>
+            <h1>ADD PERSON</h1>
+        </div>
+        <table>
+            <tr>
+                <td><label for="num2">Name</label></td>
+                <td><input id="num2" th:field="*{name}"  required></td>
+            </tr>
+            <tr>
+                <td><label for="num3">Surname</label></td>
+                <td><input id="num3" th:field="*{surname}"  required></td>
+            </tr>
+            <tr>
+                <td><label for="num4">Age</label></td>
+                <td><input id="num4" type="number" th:field="*{age}"  required></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-3">SAVE</button>
+    </form>
+
+    <a th:href="@{/ui/civil/get/all}">
+        <button class="btn btn-5">Back</button>
+    </a>
+
+</div>
+</body>
+</html>
