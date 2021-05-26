@@ -11,29 +11,25 @@ package edu.coursework.warehouse.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "manager")
 public class Manager {
 
+    @Id
     private String id;
 
     private Person person;
     private double salary;
     private int numberOfWorks;
 
-    private LocalDateTime created_at;
-    private LocalDateTime modified_at;
+    private Date createdAt;
+    private Date modifiedAt;
     private String description;
-
-    public Manager(String id, Person person, double salary, int numberOfWorks) {
-        this.id = id;
-        this.person = person;
-        this.salary = salary;
-        this.numberOfWorks = numberOfWorks;
-        created_at = LocalDateTime.now();
-    }
 }

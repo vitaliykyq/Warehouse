@@ -8,51 +8,52 @@ package edu.coursework.warehouse.service.manager.impls;
     @since:    15.04.2021     
 */
 
-import edu.coursework.warehouse.dao.manager.impls.ManagerDAOImpl;
-import edu.coursework.warehouse.data.FakeData;
 import edu.coursework.warehouse.model.Manager;
+import edu.coursework.warehouse.repository.ManagerRepository;
 import edu.coursework.warehouse.service.manager.interfaces.IManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class ManagerServiceImpl implements IManagerService {
 
     @Autowired
-    FakeData fakeData;
-
-    @Autowired
-    ManagerDAOImpl dao;
+    ManagerRepository repository;
 
     @Override
     public Manager getById(String id) {
-        return dao.getById(id);
+
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public Manager create(Manager manager) {
-        return dao.create(manager);
+        manager.setCreatedAt(new Date());
+        return repository.save(manager);
     }
 
     @Override
     public Manager update(Manager manager) {
-        return dao.update(manager);
+        manager.setModifiedAt(new Date());
+        manager.setCreatedAt(repository.findById(manager.getId())
+                .orElse(null)
+                .getCreatedAt());
+        repository.save(manager);
+        return manager;
     }
 
     @Override
     public Manager delete(String id) {
-        return dao.delete(id);
-    }
-
-    @Override
-    public Manager save(Manager manager) {
+        repository.deleteById(id);
         return null;
     }
 
     @Override
     public List<Manager> getAll() {
-        return fakeData.getManagerList();
+
+        return repository.findAll();
     }
 }

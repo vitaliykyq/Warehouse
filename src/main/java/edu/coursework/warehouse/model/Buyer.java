@@ -11,14 +11,18 @@ package edu.coursework.warehouse.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "buyer")
 public class Buyer {
 
+    @Id
     private String id;
 
     private String name;
@@ -26,16 +30,7 @@ public class Buyer {
     private String number;
     private Manager manager;
 
-    private LocalDateTime created_at;
-    private LocalDateTime modified_at;
+    private Date createdAt;
+    private Date modifiedAt;
     private String description;
-
-    public Buyer(String id, String name, String address, String number, Manager manager) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.number = number;
-        this.manager = manager;
-        created_at = LocalDateTime.now();
-    }
 }

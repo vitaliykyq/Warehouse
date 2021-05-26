@@ -11,30 +11,25 @@ package edu.coursework.warehouse.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.awt.image.LookupOp;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "producer")
 public class Producer {
 
+    @Id
     private String id;
 
     private String country;
     private String address;
     private String number;
 
-    private LocalDateTime created_at;
-    private LocalDateTime modified_at;
+    private Date createdAt;
+    private Date modifiedAt;
     private String description;
-
-    public Producer(String id, String country, String address, String number) {
-        this.id = id;
-        this.country = country;
-        this.address = address;
-        this.number = number;
-        created_at = LocalDateTime.now();
-    }
 }

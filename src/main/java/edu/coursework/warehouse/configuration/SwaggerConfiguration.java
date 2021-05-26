@@ -1,5 +1,13 @@
 package edu.coursework.warehouse.configuration;
 
+/*
+    @author:    Sasha
+    @project:    Warehouse
+    @class:    SwaggerConfiguration
+    @version:    1.0.0
+    @since:    14.04.2021
+*/
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.OpenAPI;

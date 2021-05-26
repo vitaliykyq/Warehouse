@@ -9,7 +9,6 @@ package edu.coursework.warehouse.data;
 */
 
 import edu.coursework.warehouse.model.Manager;
-import edu.coursework.warehouse.model.Person;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

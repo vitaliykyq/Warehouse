@@ -18,6 +18,5 @@ public interface IPersonService {
     Person create(Person person);
     Person update(Person person);
     Person delete(String id);
-    Person save(Person person);
     List<Person> getAll();
 }

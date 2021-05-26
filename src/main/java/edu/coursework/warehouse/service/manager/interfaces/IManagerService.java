@@ -18,6 +18,5 @@ public interface IManagerService {
     Manager create(Manager manager);
     Manager update(Manager manager);
     Manager delete(String id);
-    Manager save(Manager manager);
     List<Manager> getAll();
 }

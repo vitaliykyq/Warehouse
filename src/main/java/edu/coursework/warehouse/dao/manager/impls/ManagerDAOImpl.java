@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -34,7 +35,7 @@ public class ManagerDAOImpl implements IManagerDAO {
         String id = String.valueOf(this.getAll().stream()
                 .mapToInt(el->Integer.parseInt(el.getId()))
                 .max().orElse(0)+1);
-        manager.setCreated_at(LocalDateTime.now());
+        manager.setCreatedAt(new Date());
         manager.setId(id);
         this.getAll().add(manager);
         return manager;
@@ -46,7 +47,7 @@ public class ManagerDAOImpl implements IManagerDAO {
         updatedManager.setPerson(manager.getPerson());
         updatedManager.setSalary(manager.getSalary());
         updatedManager.setNumberOfWorks(manager.getNumberOfWorks());
-        updatedManager.setModified_at(LocalDateTime.now());
+        updatedManager.setModifiedAt(new Date());
         return updatedManager;
 
     }
@@ -65,6 +66,6 @@ public class ManagerDAOImpl implements IManagerDAO {
 
     @Override
     public List<Manager> getAll() {
-        return fakeData.getManagerList();
+        return null /*fakeData.getManagerList()*/;
     }
 }

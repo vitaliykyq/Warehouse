@@ -1,8 +1,8 @@
 package edu.coursework.warehouse.controller.rest;
 
 /*
-    @author:    Bogdan
-    @project:    Enterprises
+    @author:    Sasha
+    @project:    Warehouse
     @class:    CommonController
     @version:    1.0.0
     @since:    14.04.2021
