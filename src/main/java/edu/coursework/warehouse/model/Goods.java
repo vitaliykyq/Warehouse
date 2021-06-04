@@ -29,9 +29,9 @@ public class Goods {
     private Producer producer;
     private String name;
     private String unitsOfMeasurement;
-    private String num;
-    private String purchasePricePerUnit;
-    private String sellingPricePerUnit;
+    private int num;
+    private double purchasePricePerUnit;
+    private double sellingPricePerUnit;
 
     private Date createdAt;
     private Date modifiedAt;

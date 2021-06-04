@@ -1,14 +1,18 @@
+/*
 package edu.coursework.warehouse.data;
 
+*/
 /*
     @author:    Sasha
     @project:    Warehouse
     @class:    FakeData
     @version:    1.0.0
     @since:    14.04.2021
-*/
+*//*
+
 
 import edu.coursework.warehouse.model.Manager;
+import edu.coursework.warehouse.model.Person;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -60,4 +64,7 @@ public class FakeData {
     public void setManagerList(List<Manager> managerList) {
         this.managerList = managerList;
     }
+
+
 }
+*/

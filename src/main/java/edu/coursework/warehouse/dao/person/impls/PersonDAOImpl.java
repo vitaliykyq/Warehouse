@@ -1,12 +1,12 @@
-package edu.coursework.warehouse.dao.person.impls;
+/*package edu.coursework.warehouse.dao.person.impls;
 
-/*
+*//*
     @author:    Sasha
     @project:    Warehouse
     @class:    PersonDAOImpl
     @version:    1.0.0 
     @since:    14.04.2021     
-*/
+*//*
 
 
 import edu.coursework.warehouse.dao.person.interfaces.IPersonDAO;
@@ -25,7 +25,7 @@ public class PersonDAOImpl implements IPersonDAO {
     @Autowired
     FakeData fakeData;
 
-    /*@Override
+    *//*@Override
     public Administration getById(String id) {
         return null;
     }
@@ -53,7 +53,7 @@ public class PersonDAOImpl implements IPersonDAO {
     @Override
     public List<Administration> getAll() {
         return fakeData.getAdministrations();
-    }*/
+    }*//*
 
     @Override
     public Person getById(String id) {
@@ -98,6 +98,6 @@ public class PersonDAOImpl implements IPersonDAO {
 
     @Override
     public List<Person> getAll() {
-        return null /*fakeData.getPersonList()*/;
+        return null *//*fakeData.getPersonList()*//*;
     }
-}
+}*/

@@ -1,12 +1,15 @@
+/*
 package edu.coursework.warehouse.dao.manager.impls;
 
+*/
 /*
     @author:    Sasha
     @project:    Warehouse
     @class:    ManagerDAOImpl
     @version:    1.0.0 
     @since:    15.04.2021     
-*/
+*//*
+
 
 import edu.coursework.warehouse.dao.manager.interfaces.IManagerDAO;
 import edu.coursework.warehouse.data.FakeData;
@@ -66,6 +69,9 @@ public class ManagerDAOImpl implements IManagerDAO {
 
     @Override
     public List<Manager> getAll() {
-        return null /*fakeData.getManagerList()*/;
+        return null */
+/*fakeData.getManagerList()*//*
+;
     }
 }
+*/

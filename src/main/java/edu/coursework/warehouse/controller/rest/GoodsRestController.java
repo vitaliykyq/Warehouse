@@ -50,4 +50,37 @@ public class GoodsRestController {
         return service.update(goods);
     }
 
+    @GetMapping("/get/goodsOfProvider/{provider}")
+    public Object getGoodsOfProvider(@PathVariable("provider") String provider){
+        return service.getGoodsOfProvider(provider) ;
+    }
+
+
+    @GetMapping("/get/goodsOfProducer/{producer}")
+    public Object getGoodsOfProducer(@PathVariable("producer") String producer){
+        return service.getGoodsOfProducer(producer) ;
+    }
+    @GetMapping("/get/numOfProducersGoods")
+    public Object getNumOfProducersGoods(){
+        return service.getNumfProducersGoods() ;
+    }
+
+
+    @GetMapping("/get/byName/{name}")
+    public List<Goods> getAllByName(@PathVariable("name") String name){
+        return service.getAllByName(name) ;
+    }
+
+
+    @GetMapping("/get/byNum/{num}")
+    public List<Goods> getAllByNum(@PathVariable("num") int num){
+        return service.getAllByNum(num) ;
+    }
+
+    @GetMapping("/get/bySellingPricePerUnit/{price}")
+    public List<Goods> getAllBySellingPricePerUnit(@PathVariable("price") String price){
+        return service.getAllBySellingPricePerUnit(price) ;
+    }
+
+
 }

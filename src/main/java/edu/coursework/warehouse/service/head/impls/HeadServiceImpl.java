@@ -10,7 +10,6 @@ package edu.coursework.warehouse.service.head.impls;
 
 import edu.coursework.warehouse.model.Head;
 import edu.coursework.warehouse.repository.HeadRepository;
-import edu.coursework.warehouse.service.head.interfaces.IHeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
