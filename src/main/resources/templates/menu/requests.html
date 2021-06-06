@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+    <h1 class="menu-text">Requests</h1>
+    <table>
+        <tbody class="menu">
+        <tr>
+            <td>
+                <a th:href="@{/api/goods/get/goodsOfProvider/{provider}}">Get Goods Of Provider</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a th:href="@{/api/goods/get/goodsOfProducer/{producer}}">Get Goods Of Producer</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a th:href="@{/api/goods//get/numOfProducersGoods}">Get Number Of Producer's Goods</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a th:href="@{/api/goods/get/byName/{name}}">Get All By Name</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a th:href="@{/api/goods/get/byNum/{num}}">Get All By Number</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a th:href="@{/api/goods/get/bySellingPricePerUnit/{price}}">Get All By Selling Price Per Unit</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

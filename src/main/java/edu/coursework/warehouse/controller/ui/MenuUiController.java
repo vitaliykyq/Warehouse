@@ -11,4 +11,7 @@ public class MenuUiController {
     @RequestMapping()
     public String showAll(){ return "menu/menu"; }
 
+    @RequestMapping("/requests")
+    public String getRequests(){ return "menu/requests"; }
+
 }

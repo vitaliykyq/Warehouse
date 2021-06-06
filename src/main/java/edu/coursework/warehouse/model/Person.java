@@ -27,7 +27,7 @@ public class Person {
 
     private String name;
     private String surname;
-    private int age;
+    private int year;
 
     private Date createdAt;
     private Date modifiedAt;

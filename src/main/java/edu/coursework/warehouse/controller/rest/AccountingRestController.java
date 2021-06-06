@@ -18,7 +18,7 @@ import java.util.List;
 
 @Tag(name = "Accounting controller API")
 @RestController
-@RequestMapping("api/accounting")
+@RequestMapping("api/Bb")
 public class AccountingRestController {
 
     @Autowired
