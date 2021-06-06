@@ -90,7 +90,7 @@ public class GoodsServiceImpl implements IGoodsService {
     public List<Goods> getAllByNum (int num) {
         return repository.findAllByNum(num);
     }
-    public List<Goods> getAllBySellingPricePerUnit (String price) {
+    public List<Goods> getAllBySellingPricePerUnit (double price) {
         return repository.findAllBySellingPricePerUnit(price);
     }
 }

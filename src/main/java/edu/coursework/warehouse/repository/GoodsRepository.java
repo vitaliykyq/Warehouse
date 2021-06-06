@@ -19,6 +19,6 @@ import java.util.List;
 public interface GoodsRepository extends MongoRepository<Goods, String> {
     public List<Goods> findAllByName (String name);
     public List<Goods> findAllByNum (int num);
-    public List<Goods> findAllBySellingPricePerUnit (String price);
+    public List<Goods> findAllBySellingPricePerUnit (double price);
 
 }

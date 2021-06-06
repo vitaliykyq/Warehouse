@@ -78,7 +78,7 @@ public class GoodsRestController {
     }
 
     @GetMapping("/get/bySellingPricePerUnit/{price}")
-    public List<Goods> getAllBySellingPricePerUnit(@PathVariable("price") String price){
+    public List<Goods> getAllBySellingPricePerUnit(@PathVariable("price") double price){
         return service.getAllBySellingPricePerUnit(price) ;
     }
 
