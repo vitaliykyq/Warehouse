@@ -8,8 +8,11 @@ package edu.coursework.warehouse.controller.ui;
     @since:    26.04.2021     
 */
 
-import edu.coursework.warehouse.model.Accounting;
+import edu.coursework.warehouse.model.*;
 import edu.coursework.warehouse.service.accounting.impls.AccountingServiceImpl;
+import edu.coursework.warehouse.service.buyer.impls.BuyerServiceImpl;
+import edu.coursework.warehouse.service.goods.impls.GoodsServiceImpl;
+import edu.coursework.warehouse.service.provider.impls.ProviderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,15 @@ public class AccountingUIController {
 
     @Autowired
     AccountingServiceImpl accountingService;
+
+    @Autowired
+    ProviderServiceImpl providerService;
+
+    @Autowired
+    BuyerServiceImpl buyerService;
+
+    @Autowired
+    GoodsServiceImpl goodsService;
 
     @RequestMapping("/get/all")
     public String showAll(Model model){
@@ -38,14 +50,19 @@ public class AccountingUIController {
         Accounting accounting = accountingService.getById(id);
         model.addAttribute("accounting", accounting);
 
+        List<Provider> providerIdList = providerService.getAll();
+        model.addAttribute("providerIdList", providerIdList);
+
+        List<Buyer> buyerIdList = buyerService.getAll();
+        model.addAttribute("buyerIdList", buyerIdList);
+
+        List<Goods> goodsIdList = goodsService.getAll();
+        model.addAttribute("goodsIdList", goodsIdList);
         return "accounting/updateAccounting";
     }
 
     @PostMapping("/update")
-    public String update(Model model,
-                         @ModelAttribute("employee") @RequestBody Accounting accounting) {
-
-        /*accounting.setPerson(personService.getAll().get(Integer.parseInt(accounting.getPerson().getId()) - 1));*/
+    public String update(Model model, @ModelAttribute("accounting") @RequestBody Accounting accounting) {
         accountingService.update(accounting);
         return "redirect:/ui/accounting/get/all";
     }
@@ -54,12 +71,20 @@ public class AccountingUIController {
     public String showNewForm(Model model) {
         Accounting accounting = new Accounting();
         model.addAttribute("accounting", accounting);
+
+        List<Provider> providerIdList = providerService.getAll();
+        model.addAttribute("providerIdList", providerIdList);
+
+        List<Buyer> buyerIdList = buyerService.getAll();
+        model.addAttribute("buyerIdList", buyerIdList);
+
+        List<Goods> goodsIdList = goodsService.getAll();
+        model.addAttribute("goodsIdList", goodsIdList);
         return "accounting/newAccounting";
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("employee") @RequestBody Accounting accounting) {
-        /*accounting.setPerson(personService.getAll().get(Integer.parseInt(accounting.getPerson().getId()) - 1));*/
+    public String add(Model model, @ModelAttribute("accounting") @RequestBody Accounting accounting) {
         model.addAttribute("accounting", accountingService.create(accounting));
         return "redirect:/ui/accounting/get/all";
     }

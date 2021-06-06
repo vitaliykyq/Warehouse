@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Goods</title>
+    <link  th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="element">
+        <form action="#" th:action="@{/ui/goods/add}" th:object="${goods}"
+              method="POST">
+
+            <div>
+                <h1>ADD GOODS</h1>
+            </div>
+
+            <table>
+                <tr>
+                    <td><label for="num1">Provider</label></td>
+                    <td>
+                        <div id="num1" style="text-align: left">
+                            <select th:field="*{provider}"  required>
+                                <option th:each="providerIdList: ${providerIdList}"
+                                        th:value="${providerIdList.id}" th:text="${providerIdList.name}">ID
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="num2">Producer</label></td>
+                    <td>
+                        <div id="num2" style="text-align: left">
+                            <select th:field="*{producer}"  required>
+                                <option th:each="producerIdList: ${producerIdList}"
+                                        th:value="${producerIdList.id}" th:text="${producerIdList.country}">ID
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="num3">Name</label></td>
+                    <td><input id="num3" th:field="*{name}"  required></td>
+                </tr>
+                <tr>
+                    <td><label for="num4">UnitsOfMeasurement</label></td>
+                    <td><input id="num4" th:field="*{unitsOfMeasurement}"  required></td>
+                </tr>
+                <tr>
+                    <td><label for="num5">Num</label></td>
+                    <td><input id="num5" type="number" th:field="*{num}"  required></td>
+                </tr>
+                <tr>
+                    <td><label for="num6">PurchasePricePerUnit</label></td>
+                    <td><input id="num6" type="number" th:field="*{purchasePricePerUnit}"  required></td>
+                </tr>
+                <tr>
+                    <td><label for="num7">SellingPricePerUnit</label></td>
+                    <td><input id="num7" type="number" th:field="*{sellingPricePerUnit}"  required></td>
+                </tr>
+            </table>
+
+            <br><br>
+
+            <button type="submit" class="btn btn-3">SAVE</button>
+        </form>
+
+        <br>
+        <a th:href="@{/ui/goods/get/all}">
+            <button class="btn btn-5">Back</button>
+        </a>
+
+    </div>
+
+    <script th:inline="javascript">
+        let listElem = document.querySelectorAll(".dropItem");
+        function kl(obj) {
+            listElem.forEach(elem => { elem.style.display = "none";});
+
+            if(obj.getAttribute("data-status") === "on") {
+                document.querySelectorAll(".btnDropMenu").
+                forEach(elem => { elem.setAttribute("data-status", "off"); })
+                return;
+            }
+
+            listElem.forEach(elem => {
+                if(elem.getAttribute("data-id-drop") === obj.getAttribute("data-id")) {
+                    elem.style.display = "grid";
+                    elem.style.position = "absolute";
+                    elem.style.gridTemplateColumns = "auto auto";
+                    obj.setAttribute("data-status", "on");
+                }else{
+                    document.querySelectorAll(".btnDropMenu").
+                    forEach(elem => { if(elem != obj) elem.setAttribute("data-status", "off"); })
+                }
+            })
+        }
+    </script>
+</body>
+</html>

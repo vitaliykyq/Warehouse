@@ -9,7 +9,9 @@ package edu.coursework.warehouse.controller.ui;
 */
 
 import edu.coursework.warehouse.model.Buyer;
+import edu.coursework.warehouse.model.Manager;
 import edu.coursework.warehouse.service.buyer.impls.BuyerServiceImpl;
+import edu.coursework.warehouse.service.manager.impls.ManagerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,9 @@ public class BuyerUIController {
     @Autowired
     BuyerServiceImpl buyerService;
 
+    @Autowired
+    ManagerServiceImpl managerService;
+
     @RequestMapping("/get/all")
     public String showAll(Model model){
 
@@ -37,14 +42,15 @@ public class BuyerUIController {
     public String showUpdateForm(@PathVariable (value="id") String id, Model model){
         Buyer buyer = buyerService.getById(id);
         model.addAttribute("buyer", buyer);
+
+        List<Manager> managerIdList = managerService.getAll();
+        model.addAttribute("managerIdList", managerIdList);
         return "buyer/updateBuyer";
     }
 
     @PostMapping("/update")
-    public String update(Model model,
-                         @ModelAttribute("employee") @RequestBody Buyer buyer) {
+    public String update(Model model, @ModelAttribute("buyer") @RequestBody Buyer buyer) {
 
-        /*buyer.setPerson(personService.getAll().get(Integer.parseInt(buyer.getPerson().getId()) - 1));*/
         buyerService.update(buyer);
         return "redirect:/ui/buyer/get/all";
     }
@@ -53,13 +59,14 @@ public class BuyerUIController {
     public String showNewForm(Model model) {
         Buyer buyer = new Buyer();
         model.addAttribute("buyer", buyer);
+
+        List<Manager> managerIdList = managerService.getAll();
+        model.addAttribute("managerIdList", managerIdList);
         return "buyer/newBuyer";
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("employee") @RequestBody Buyer buyer) {
-
-        /*buyer.setPerson(personService.getAll().get(Integer.parseInt(buyer.getPerson().getId()) - 1));*/
+    public String add(Model model, @ModelAttribute("buyer") @RequestBody Buyer buyer) {
         model.addAttribute("buyer", buyerService.create(buyer));
         return "redirect:/ui/buyer/get/all";
     }

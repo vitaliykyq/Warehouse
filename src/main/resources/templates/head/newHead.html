@@ -2,16 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Manager</title>
+    <title>Add Head</title>
     <link  th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
     <div class="element">
-        <form action="#" th:action="@{/ui/manager/add}" th:object="${manager}"
+        <form action="#" th:action="@{/ui/head/add}" th:object="${head}"
               method="POST">
 
             <div>
-                <h1>ADD MANAGER</h1>
+                <h1>ADD HEAD</h1>
             </div>
 
             <table>
@@ -28,12 +28,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="num2">Salary</label></td>
-                    <td><input id="num2" type="number" th:field="*{salary}"  required></td>
+                    <td><label for="num2">Experience</label></td>
+                    <td><input id="num2" type="number" th:field="*{experience}"  required></td>
                 </tr>
                 <tr>
-                    <td><label for="num3">NumberOfWorks</label></td>
-                    <td><input id="num3" type="number" th:field="*{numberOfWorks}"  required></td>
+                    <td><label for="num3">NumberOfDevoted</label></td>
+                    <td><input id="num3" type="number" th:field="*{numberOfDevoted}"  required></td>
                 </tr>
             </table>
 
@@ -43,7 +43,7 @@
         </form>
 
         <br>
-        <a th:href="@{/ui/manager/get/all}">
+        <a th:href="@{/ui/head/get/all}">
             <button class="btn btn-5">Back</button>
         </a>
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Producer</title>
+    <link  th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="element">
+        <form id="dataMain" action="#" th:action="@{/ui/producer/update}" th:object="${producer}"
+              method="POST">
+
+            <table>
+                <tr>
+                    <td><label for="num0">Id</label></td>
+                    <td><input id="num0" readonly th:field="*{id}"/></td>
+                </tr>
+                <tr>
+                    <td><label for="num1">Country</label></td>
+                    <td><input id="num1" th:field="*{country}"  required></td>
+                </tr>
+                <tr>
+                    <td><label for="num2">Address</label></td>
+                    <td><input id="num2" th:field="*{address}"  required></td>
+                </tr>
+                <tr>
+                    <td><label for="num3">Number</label></td>
+                    <td><input id="num3" th:field="*{number}"  required></td>
+                </tr>
+            </table>
+
+            <br><br>
+
+            <button form="dataMain" type="submit" class="btn btn-3">DONE</button>
+        </form>
+        <br>
+        <a th:href="@{/ui/producer/get/all}">
+            <button class="btn btn-5">Back</button>
+        </a>
+    </div>
+
+</body>
+</html>

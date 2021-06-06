@@ -41,10 +41,8 @@ public class DeliveryUIController {
     }
 
     @PostMapping("/update")
-    public String update(Model model,
-                         @ModelAttribute("employee") @RequestBody Delivery delivery) {
+    public String update(Model model, @ModelAttribute("delivery") @RequestBody Delivery delivery) {
 
-        /*delivery.setPerson(personService.getAll().get(Integer.parseInt(delivery.getPerson().getId()) - 1));*/
         deliveryService.update(delivery);
         return "redirect:/ui/delivery/get/all";
     }
@@ -53,12 +51,12 @@ public class DeliveryUIController {
     public String showNewForm(Model model) {
         Delivery delivery = new Delivery();
         model.addAttribute("delivery", delivery);
-        return "delivery/newManager";
+        return "delivery/newDelivery";
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("employee") @RequestBody Delivery delivery) {
-        /*delivery.setPerson(personService.getAll().get(Integer.parseInt(delivery.getPerson().getId()) - 1));*/
+    public String add(Model model, @ModelAttribute("delivery") @RequestBody Delivery delivery) {
+
         model.addAttribute("delivery", deliveryService.create(delivery));
         return "redirect:/ui/delivery/get/all";
     }

@@ -49,10 +49,8 @@ public class ManagerUIController {
     }
 
     @PostMapping("/update")
-    public String update(Model model,
-                         @ModelAttribute("employee") @RequestBody Manager manager) {
+    public String update(Model model, @ModelAttribute("manager") @RequestBody Manager manager) {
 
-        manager.setPerson(personService.getAll().get(Integer.parseInt(manager.getPerson().getId()) - 1));
         managerService.update(manager);
         return "redirect:/ui/manager/get/all";
     }
@@ -68,18 +66,9 @@ public class ManagerUIController {
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("employee") @RequestBody Manager manager) {
-
-        manager.setPerson(personService.getAll().get(Integer.parseInt(manager.getPerson().getId()) - 1));
-        double salary = manager.getSalary();
-        int numberOfWorks = manager.getNumberOfWorks();
-        /*List<Plane> planes = planeService.getAll();*/
-
-        if (salary > 0 && numberOfWorks > 0) {
-            model.addAttribute("manager", managerService.create(manager));
-            return "redirect:/ui/manager/get/all";
-        }
-        return "redirect:/ui/manager/showNewForm";
+    public String add(Model model, @ModelAttribute("manager") @RequestBody Manager manager) {
+        model.addAttribute("manager", managerService.create(manager));
+        return "redirect:/ui/manager/get/all";
     }
 
     @RequestMapping("/delete/{id}")

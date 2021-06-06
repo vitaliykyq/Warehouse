@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Goods List</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <table>
+            <thead>
+                <tr class="title">
+                    <th style="">Id</th>
+                    <th style="">Provider</th>
+                    <th style="">Producer</th>
+                    <th style="">Name</th>
+                    <th style="">UnitsOfMeasurement</th>
+                    <th style="">Num</th>
+                    <th style="">PurchasePricePerUnit</th>
+                    <th style="">SellingPricePerUnit</th>
+                    <th style="">CreatedAt</th>
+                    <th style="">ModifiedAt</th>
+                    <th style="" colspan="2">OPTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="goods: ${goodsList}">
+                <td th:text="${goods.id}"></td>
+                <td th:text="${goods.provider.name}"></td>
+                <td th:text="${goods.producer.country}"></td>
+                <td th:text="${goods.name}"></td>
+                <td th:text="${goods.unitsOfMeasurement}"></td>
+                <td th:text="${goods.num}"></td>
+                <td th:text="${goods.purchasePricePerUnit}"></td>
+                <td th:text="${goods.sellingPricePerUnit}"></td>
+                <td th:text="${goods.createdAt}"></td>
+                <td th:text="${goods.modifiedAt}"></td>
+                <td>
+                    <a th:href="@{/ui/goods/delete/{id}(id=${goods.id})}">
+                        <button class="buttonDelete">Delete</button>
+                    </a>
+                    <a th:href="@{/ui/goods/showUpdateForm/{id}(id=${goods.id})}">
+                        <button class="buttonEdit">Edit</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <a th:href = "@{/ui/goods/showNewForm}">
+            <button class="btn btn-5">Add</button>
+        </a>
+
+        <a class="btn btn-5 link__menu"
+           th:href="@{/ui/menu}">
+            Menu
+        </a>
+    </div>
+</body>
+</html>

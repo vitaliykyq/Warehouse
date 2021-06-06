@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Accounting</title>
+    <link  th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="element">
+        <form id="dataMain" action="#" th:action="@{/ui/accounting/update}" th:object="${accounting}"
+              method="POST">
+
+            <table>
+                <tr>
+                    <td><label for="num0">Id</label></td>
+                    <td><input id="num0" readonly th:field="*{id}"/></td>
+                </tr>
+                <tr>
+                    <td><label for="num1">Provider</label></td>
+                    <td>
+                        <div id="num1" style="text-align: left">
+                            <select th:field="*{provider}"  required>
+                                <option th:each="providerIdList: ${providerIdList}"
+                                        th:value="${providerIdList.id}" th:text="${providerIdList.name}">ID
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="num2">Buyer</label></td>
+                    <td>
+                        <div id="num2" style="text-align: left">
+                            <select th:field="*{buyer}"  required>
+                                <option th:each="buyerIdList: ${buyerIdList}"
+                                        th:value="${buyerIdList.id}" th:text="${buyerIdList.name}">ID
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="num3">Goods</label></td>
+                    <td>
+                        <div id="num3" style="text-align: left">
+                            <select th:field="*{goods}"  required>
+                                <option th:each="goodsIdList: ${goodsIdList}"
+                                        th:value="${goodsIdList.id}" th:text="${goodsIdList.name}">ID
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="num4">Conclusion</label></td>
+                    <td><input id="num4" th:field="*{conclusion}"  required></td>
+                </tr>
+            </table>
+
+            <br><br>
+
+            <button form="dataMain" type="submit" class="btn btn-3">DONE</button>
+        </form>
+        <br>
+        <a th:href="@{/ui/accounting/get/all}">
+            <button class="btn btn-5">Back</button>
+        </a>
+    </div>
+
+</body>
+</html>

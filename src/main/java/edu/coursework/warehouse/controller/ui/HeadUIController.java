@@ -9,7 +9,9 @@ package edu.coursework.warehouse.controller.ui;
 */
 
 import edu.coursework.warehouse.model.Head;
+import edu.coursework.warehouse.model.Person;
 import edu.coursework.warehouse.service.head.impls.HeadServiceImpl;
+import edu.coursework.warehouse.service.person.impls.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,9 @@ public class HeadUIController {
     @Autowired
     HeadServiceImpl headService;
 
+    @Autowired
+    PersonServiceImpl personService;
+
     @RequestMapping("/get/all")
     public String showAll(Model model){
 
@@ -37,14 +42,15 @@ public class HeadUIController {
     public String showUpdateForm(@PathVariable (value="id") String id, Model model){
         Head head = headService.getById(id);
         model.addAttribute("head", head);
+
+        List<Person> personIdList = personService.getAll();
+        model.addAttribute("personIdList", personIdList);
         return "head/updateHead";
     }
 
     @PostMapping("/update")
-    public String update(Model model,
-                         @ModelAttribute("employee") @RequestBody Head head) {
+    public String update(Model model, @ModelAttribute("head") @RequestBody Head head) {
 
-        /*head.setPerson(personService.getAll().get(Integer.parseInt(head.getPerson().getId()) - 1));*/
         headService.update(head);
         return "redirect:/ui/head/get/all";
     }
@@ -53,12 +59,15 @@ public class HeadUIController {
     public String showNewForm(Model model) {
         Head head = new Head();
         model.addAttribute("head", head);
+
+        List<Person> personIdList = personService.getAll();
+        model.addAttribute("personIdList", personIdList);
         return "head/newHead";
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("employee") @RequestBody Head head) {
-        /*head.setPerson(personService.getAll().get(Integer.parseInt(head.getPerson().getId()) - 1));*/
+    public String add(Model model, @ModelAttribute("head") @RequestBody Head head) {
+
         model.addAttribute("head", headService.create(head));
         return "redirect:/ui/head/get/all";
     }

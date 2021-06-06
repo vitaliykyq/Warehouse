@@ -30,7 +30,7 @@ public class ProducerUIController {
         List<Producer> producerList = producerService.getAll();
         model.addAttribute("producerList", producerList);
 
-        return "producerServiceImpl/producerList";
+        return "producer/producerList";
     }
 
     @GetMapping("/showUpdateForm/{id}")
@@ -41,9 +41,8 @@ public class ProducerUIController {
     }
 
     @PostMapping("/update")
-    public String update(Model model,
-                         @ModelAttribute("employee") @RequestBody Producer producer) {
-        /*producer.setPerson(personService.getAll().get(Integer.parseInt(producer.getPerson().getId()) - 1));*/
+    public String update(Model model, @ModelAttribute("producer") @RequestBody Producer producer) {
+
         producerService.update(producer);
         return "redirect:/ui/producer/get/all";
     }
@@ -56,8 +55,8 @@ public class ProducerUIController {
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("employee") @RequestBody Producer producer) {
-        /*producer.setPerson(personService.getAll().get(Integer.parseInt(producer.getPerson().getId()) - 1));*/
+    public String add(Model model, @ModelAttribute("producer") @RequestBody Producer producer) {
+
         model.addAttribute("producer", producerService.create(producer));
         return "redirect:/ui/producer/get/all";
     }

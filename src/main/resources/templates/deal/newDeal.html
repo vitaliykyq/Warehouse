@@ -2,38 +2,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Manager</title>
+    <title>Add Deal</title>
     <link  th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
     <div class="element">
-        <form action="#" th:action="@{/ui/manager/add}" th:object="${manager}"
+        <form action="#" th:action="@{/ui/deal/add}" th:object="${deal}"
               method="POST">
 
             <div>
-                <h1>ADD MANAGER</h1>
+                <h1>ADD DEAL</h1>
             </div>
 
             <table>
                 <tr>
-                    <td><label for="num1">Person</label></td>
+                    <td><label for="num1">Provider</label></td>
                     <td>
                         <div id="num1" style="text-align: left">
-                            <select th:field="*{person}"  required>
-                                <option th:each="personIdList: ${personIdList}"
-                                        th:value="${personIdList.id}" th:text="${personIdList.name}">ID
+                            <select th:field="*{provider}"  required>
+                                <option th:each="providerIdList: ${providerIdList}"
+                                        th:value="${providerIdList.id}" th:text="${providerIdList.name}">ID
                                 </option>
                             </select>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="num2">Salary</label></td>
-                    <td><input id="num2" type="number" th:field="*{salary}"  required></td>
+                    <td><label for="num2">Buyer</label></td>
+                    <td>
+                        <div id="num2" style="text-align: left">
+                            <select th:field="*{buyer}"  required>
+                                <option th:each="buyerIdList: ${buyerIdList}"
+                                        th:value="${buyerIdList.id}" th:text="${buyerIdList.name}">ID
+                                </option>
+                            </select>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><label for="num3">NumberOfWorks</label></td>
-                    <td><input id="num3" type="number" th:field="*{numberOfWorks}"  required></td>
+                    <td><label for="num3">Offtake</label></td>
+                    <td><input id="num3" type="number" th:field="*{offtake}"  required></td>
+                </tr>
+                <tr>
+                    <td><label for="num4">Sum</label></td>
+                    <td><input id="num4" type="number" th:field="*{sum}"  required></td>
                 </tr>
             </table>
 
@@ -43,7 +55,7 @@
         </form>
 
         <br>
-        <a th:href="@{/ui/manager/get/all}">
+        <a th:href="@{/ui/deal/get/all}">
             <button class="btn btn-5">Back</button>
         </a>
 

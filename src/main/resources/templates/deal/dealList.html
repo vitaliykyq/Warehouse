@@ -2,7 +2,7 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Manager List</title>
+    <title>Deal List</title>
     <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
@@ -11,27 +11,29 @@
             <thead>
                 <tr class="title">
                     <th style="">Id</th>
-                    <th style="">Person</th>
-                    <th style="">Salary</th>
-                    <th style="">NumberOfWorks</th>
+                    <th style="">Provider</th>
+                    <th style="">Buyer</th>
+                    <th style="">Offtake</th>
+                    <th style="">Sum</th>
                     <th style="">CreatedAt</th>
                     <th style="">ModifiedAt</th>
                     <th style="" colspan="2">OPTIONS</th>
                 </tr>
             </thead>
             <tbody>
-            <tr th:each="manager: ${managerList}">
-                <td th:text="${manager.id}"></td>
-                <td th:text="${manager.person.name}"></td>
-                <td th:text="${manager.salary}"></td>
-                <td th:text="${manager.numberOfWorks}"></td>
-                <td th:text="${manager.createdAt}"></td>
-                <td th:text="${manager.modifiedAt}"></td>
+            <tr th:each="deal: ${dealList}">
+                <td th:text="${deal.id}"></td>
+                <td th:text="${deal.provider.name}"></td>
+                <td th:text="${deal.buyer.name}"></td>
+                <td th:text="${deal.offtake}"></td>
+                <td th:text="${deal.sum}"></td>
+                <td th:text="${deal.createdAt}"></td>
+                <td th:text="${deal.modifiedAt}"></td>
                 <td>
-                    <a th:href="@{/ui/manager/delete/{id}(id=${manager.id})}">
+                    <a th:href="@{/ui/deal/delete/{id}(id=${deal.id})}">
                         <button class="buttonDelete">Delete</button>
                     </a>
-                    <a th:href="@{/ui/manager/showUpdateForm/{id}(id=${manager.id})}">
+                    <a th:href="@{/ui/deal/showUpdateForm/{id}(id=${deal.id})}">
                         <button class="buttonEdit">Edit</button>
                     </a>
                 </td>
@@ -41,7 +43,7 @@
 
         <br>
 
-        <a th:href = "@{/ui/manager/showNewForm}">
+        <a th:href = "@{/ui/deal/showNewForm}">
             <button class="btn btn-5">Add</button>
         </a>
 

@@ -12,13 +12,13 @@
         <thead>
 
         <tr class="title">
-            <th style="width: 10%">Id</th>
-            <th style="width: 15%">Name</th>
-            <th style="width: 15%">Surname</th>
-            <th style="width: 10%">Age</th>
-            <th style="width: 15%">CreatedAt</th>
-            <th style="width: 15%">ModifiedAt</th>
-            <th style="width: 20%" colspan="2">OPTIONS</th>
+            <th style="">Id</th>
+            <th style="">Name</th>
+            <th style="">Surname</th>
+            <th style="">Age</th>
+            <th style="">CreatedAt</th>
+            <th style="">ModifiedAt</th>
+            <th style="" colspan="2">OPTIONS</th>
         </tr>
 
         </thead>
@@ -29,8 +29,8 @@
             <td th:text="${person.name}">Name</td>
             <td th:text="${person.surname}">Surname</td>
             <td th:text="${person.age}">Age</td>
-            <td th:text="${person.created_at}">created_at</td>
-            <td th:text="${person.modified_at}">modified_at</td>
+            <td th:text="${person.createdAt}">created_at</td>
+            <td th:text="${person.modifiedAt}">modified_at</td>
             <td>
                 <a th:href="@{/ui/person/delete/{id}(id=${person.id})}">
                     <button class="buttonDelete">Delete</button>
@@ -47,6 +47,11 @@
 
     <a th:href = "@{/ui/person/showNewForm}">
         <button class="btn btn-5">Add</button>
+    </a>
+
+    <a class="btn btn-5 link__menu"
+       th:href="@{/ui/menu}">
+        Menu
     </a>
 </div>
 </body>

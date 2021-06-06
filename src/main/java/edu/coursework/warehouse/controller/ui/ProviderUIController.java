@@ -8,7 +8,9 @@ package edu.coursework.warehouse.controller.ui;
     @since:    26.04.2021     
 */
 
+import edu.coursework.warehouse.model.Head;
 import edu.coursework.warehouse.model.Provider;
+import edu.coursework.warehouse.service.head.impls.HeadServiceImpl;
 import edu.coursework.warehouse.service.provider.impls.ProviderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,12 +24,15 @@ import java.util.List;
 public class ProviderUIController {
 
     @Autowired
-    ProviderServiceImpl managerService;
+    ProviderServiceImpl providerService;
+
+    @Autowired
+    HeadServiceImpl headService;
 
     @RequestMapping("/get/all")
     public String showAll(Model model){
 
-        List<Provider> providerList = managerService.getAll();
+        List<Provider> providerList = providerService.getAll();
         model.addAttribute("providerList", providerList);
 
         return "provider/providerList";
@@ -35,16 +40,18 @@ public class ProviderUIController {
 
     @GetMapping("/showUpdateForm/{id}")
     public String showUpdateForm(@PathVariable (value="id") String id, Model model){
-        Provider provider = managerService.getById(id);
+        Provider provider = providerService.getById(id);
         model.addAttribute("provider", provider);
+
+        List<Head> headIdList = headService.getAll();
+        model.addAttribute("headIdList", headIdList);
         return "provider/updateProvider";
     }
 
     @PostMapping("/update")
-    public String update(Model model,
-                         @ModelAttribute("employee") @RequestBody Provider provider) {
-        /*provider.setPerson(personService.getAll().get(Integer.parseInt(provider.getPerson().getId()) - 1));*/
-        managerService.update(provider);
+    public String update(Model model, @ModelAttribute("provider") @RequestBody Provider provider) {
+
+        providerService.update(provider);
         return "redirect:/ui/provider/get/all";
     }
 
@@ -52,19 +59,22 @@ public class ProviderUIController {
     public String showNewForm(Model model) {
         Provider provider = new Provider();
         model.addAttribute("provider", provider);
+
+        List<Head> headIdList = headService.getAll();
+        model.addAttribute("headIdList", headIdList);
         return "provider/newProvider";
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("employee") @RequestBody Provider provider) {
-        /*provider.setPerson(personService.getAll().get(Integer.parseInt(provider.getPerson().getId()) - 1));*/
-        model.addAttribute("provider", managerService.create(provider));
+    public String add(Model model, @ModelAttribute("provider") @RequestBody Provider provider) {
+
+        model.addAttribute("provider", providerService.create(provider));
         return "redirect:/ui/provider/get/all";
     }
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable String id){
-        managerService.delete(id);
+        providerService.delete(id);
         return "redirect:/ui/provider/get/all";
     }
 }

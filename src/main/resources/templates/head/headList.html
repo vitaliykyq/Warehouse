@@ -2,7 +2,7 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Manager List</title>
+    <title>Head List</title>
     <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
@@ -12,26 +12,26 @@
                 <tr class="title">
                     <th style="">Id</th>
                     <th style="">Person</th>
-                    <th style="">Salary</th>
-                    <th style="">NumberOfWorks</th>
+                    <th style="">Experience</th>
+                    <th style="">NumberOfDevoted</th>
                     <th style="">CreatedAt</th>
                     <th style="">ModifiedAt</th>
                     <th style="" colspan="2">OPTIONS</th>
                 </tr>
             </thead>
             <tbody>
-            <tr th:each="manager: ${managerList}">
-                <td th:text="${manager.id}"></td>
-                <td th:text="${manager.person.name}"></td>
-                <td th:text="${manager.salary}"></td>
-                <td th:text="${manager.numberOfWorks}"></td>
-                <td th:text="${manager.createdAt}"></td>
-                <td th:text="${manager.modifiedAt}"></td>
+            <tr th:each="head: ${headList}">
+                <td th:text="${head.id}"></td>
+                <td th:text="${head.person.name}"></td>
+                <td th:text="${head.experience}"></td>
+                <td th:text="${head.numberOfDevoted}"></td>
+                <td th:text="${head.createdAt}"></td>
+                <td th:text="${head.modifiedAt}"></td>
                 <td>
-                    <a th:href="@{/ui/manager/delete/{id}(id=${manager.id})}">
+                    <a th:href="@{/ui/head/delete/{id}(id=${head.id})}">
                         <button class="buttonDelete">Delete</button>
                     </a>
-                    <a th:href="@{/ui/manager/showUpdateForm/{id}(id=${manager.id})}">
+                    <a th:href="@{/ui/head/showUpdateForm/{id}(id=${head.id})}">
                         <button class="buttonEdit">Edit</button>
                     </a>
                 </td>
@@ -41,7 +41,7 @@
 
         <br>
 
-        <a th:href = "@{/ui/manager/showNewForm}">
+        <a th:href = "@{/ui/head/showNewForm}">
             <button class="btn btn-5">Add</button>
         </a>
 

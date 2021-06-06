@@ -9,7 +9,11 @@ package edu.coursework.warehouse.controller.ui;
 */
 
 import edu.coursework.warehouse.model.Goods;
+import edu.coursework.warehouse.model.Producer;
+import edu.coursework.warehouse.model.Provider;
 import edu.coursework.warehouse.service.goods.impls.GoodsServiceImpl;
+import edu.coursework.warehouse.service.producer.impls.ProducerServiceImpl;
+import edu.coursework.warehouse.service.provider.impls.ProviderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +28,12 @@ public class GoodsUIController {
     @Autowired
     GoodsServiceImpl goodsService;
 
+    @Autowired
+    ProviderServiceImpl providerService;
+
+    @Autowired
+    ProducerServiceImpl producerService;
+
     @RequestMapping("/get/all")
     public String showAll(Model model){
 
@@ -37,14 +47,18 @@ public class GoodsUIController {
     public String showUpdateForm(@PathVariable (value="id") String id, Model model){
         Goods goods = goodsService.getById(id);
         model.addAttribute("goods", goods);
+
+        List<Provider> providerIdList = providerService.getAll();
+        model.addAttribute("providerIdList", providerIdList);
+
+        List<Producer> producerIdList = producerService.getAll();
+        model.addAttribute("producerIdList", producerIdList);
         return "goods/updateGoods";
     }
 
     @PostMapping("/update")
-    public String update(Model model,
-                         @ModelAttribute("employee") @RequestBody Goods goods) {
+    public String update(Model model, @ModelAttribute("goods") @RequestBody Goods goods) {
 
-        /*goods.setPerson(personService.getAll().get(Integer.parseInt(goods.getPerson().getId()) - 1));*/
         goodsService.update(goods);
         return "redirect:/ui/goods/get/all";
     }
@@ -53,12 +67,18 @@ public class GoodsUIController {
     public String showNewForm(Model model) {
         Goods goods = new Goods();
         model.addAttribute("goods", goods);
+
+        List<Provider> providerIdList = providerService.getAll();
+        model.addAttribute("providerIdList", providerIdList);
+
+        List<Producer> producerIdList = producerService.getAll();
+        model.addAttribute("producerIdList", producerIdList);
         return "goods/newGoods";
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("employee") @RequestBody Goods goods) {
-        /*goods.setPerson(personService.getAll().get(Integer.parseInt(goods.getPerson().getId()) - 1));*/
+    public String add(Model model, @ModelAttribute("goods") @RequestBody Goods goods) {
+
         model.addAttribute("goods", goodsService.create(goods));
         return "redirect:/ui/goods/get/all";
     }
